@@ -42,3 +42,12 @@ void ATank::AimAt(FVector HitLocation)
 {
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
+
+void ATank::Fire()
+{
+	// Log
+	auto Time = GetWorld()->GetTimeSeconds();
+	//auto TankName = GetOwner()->GetName();
+	//UE_LOG(LogTemp, Warning, TEXT("%f: %s Tank fires"), Time, *TankName);
+	UE_LOG(LogTemp, Warning, TEXT("%f: Tank fires"), Time);
+}
