@@ -49,17 +49,27 @@ private:
 
 	void MoveBarrelTowards(FVector AimDirection);
 
+	bool IsBarrelMoving();
+
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 4000;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	// Because of bug this must be public so it can be BlueprintReadWrite and then set in BP constructor for Tank_BP.
+	// If UE bug is fixed then this can be switched back to private and EditDefaultsOnly
+	// Then delete the blueprint setter in Tank_BP constructor.
+	// And set ProjectileBlueprint in details panel for TankAiming component of Tank_BP
+public:
+	UPROPERTY(BlueprintReadWrite, Category = "Setup")
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
+private:
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float ReloadTimeInSeconds = 3.0f;
 
 	float LastFireTime = 0.0f;
+
+	FVector AimDirection;
 };
