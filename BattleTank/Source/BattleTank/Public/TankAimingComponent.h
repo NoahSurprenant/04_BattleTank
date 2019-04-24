@@ -34,7 +34,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 	void Fire();
-		
+	
+	EFiringState GetFiringState() const;
+
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 	EFiringState FiringState = EFiringState::Reloading;
@@ -55,7 +57,7 @@ private:
 	UTankTurret* Turret = nullptr;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-	float LaunchSpeed = 20000;
+	float LaunchSpeed = 4000;
 
 	// Because of bug this must be public so it can be BlueprintReadWrite and then set in BP constructor for Tank_BP.
 	// If UE bug is fixed then this can be switched back to private and EditDefaultsOnly
