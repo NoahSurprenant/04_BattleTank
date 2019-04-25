@@ -39,7 +39,7 @@ public:
 	EFiringState GetFiringState() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Firing")
-	int GetRoundsLeft() const;
+	int32 GetRoundsLeft() const;
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
@@ -60,9 +60,6 @@ private:
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-	float LaunchSpeed = 4000;
-
 	// Because of bug this must be public so it can be BlueprintReadWrite and then set in BP constructor for Tank_BP.
 	// If UE bug is fixed then this can be switched back to private and EditDefaultsOnly
 	// Then delete the blueprint setter in Tank_BP constructor.
@@ -73,11 +70,15 @@ public:
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	float LaunchSpeed = 4000;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float ReloadTimeInSeconds = 3.0f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	int32 RoundsLeft = 3;
 
 	float LastFireTime = 0.0f;
 
 	FVector AimDirection;
-
-	int RoundsLeft = 3;
 };
