@@ -26,6 +26,11 @@ protected:
 	void FoundAimingComponent(UTankAimingComponent* AimCompRef);
 
 private:
+	void SetPawn(APawn* InPawn);
+
+	UFUNCTION()
+	void OnPossessedTankDeath();
+
 	// Start the tank moving the barrel so that a shot would hit
 	// the crosschair intersects the world
 	void AimTowardsCrosshair();
