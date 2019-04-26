@@ -66,6 +66,7 @@ private:
 	// And set ProjectileBlueprint in details panel for TankAiming component of Tank_BP
 public:
 	UPROPERTY(BlueprintReadWrite, Category = "Setup")
+	//UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 private:
