@@ -16,14 +16,16 @@ public:
 	// Sets default values for this component's properties
 	USpawnPoint();
 
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	AActor* GetSpawnedActor() const { return SpawnedActor; }
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 	// Config
 	//UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	// Remains commented out because UE4 bug means SpawnClass must be set in Tank_BP constructor
@@ -31,4 +33,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Setup")
 	TSubclassOf<AActor> SpawnClass;
 		
+private:
+	UPROPERTY()
+	AActor* SpawnedActor;
 };
